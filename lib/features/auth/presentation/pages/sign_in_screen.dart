@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paper_x_flutter/core/theme/app_colors.dart';
+import 'package:paper_x_flutter/features/auth/presentation/pages/otp_screen.dart';
 import 'package:paper_x_flutter/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:paper_x_flutter/features/auth/presentation/widgets/custom_dropdown.dart';
 import 'login_screen.dart';
@@ -90,6 +91,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     // TODO: Implement sign-in logic
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => OtpScreen(dialCode:"12345", phnNum: "8533969274")));
                   },
                   child: const Text(
                     'Sign Up',
