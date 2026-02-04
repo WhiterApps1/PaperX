@@ -11,20 +11,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:paper_x_flutter/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('PaperX app smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const PaperXApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the splash screen is displayed with logo
+    expect(find.byType(Image), findsAtLeastNWidgets(1));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Complete all pending timers to allow navigation
+    await tester.pumpAndSettle(const Duration(seconds: 3));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // After navigation, verify onboarding screen is displayed
+    expect(find.text('Invest Smarter, Grow Faster'), findsOneWidget);
+    expect(find.text('Sign Up'), findsOneWidget);
   });
 }
