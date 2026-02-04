@@ -23,6 +23,6 @@ void main() {
 
     // After navigation, verify onboarding screen is displayed
     expect(find.text('Invest Smarter, Grow Faster'), findsOneWidget);
-    expect(find.text('Sign In'), findsOneWidget);
+    expect(find.text('Sign Up'), findsOneWidget);
   });
 }

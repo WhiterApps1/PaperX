@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paper_x_flutter/core/theme/app_colors.dart';
+import 'package:paper_x_flutter/features/auth/presentation/pages/sign_in_screen.dart';
+import 'package:paper_x_flutter/features/auth/presentation/pages/login_screen.dart';
 
 /// Main onboarding screen with branding and sign-in CTA
 /// Clean design with focus on the logo
@@ -85,7 +87,10 @@ class OnboardingScreen extends StatelessWidget {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: Navigate to sign-in screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SignInScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.buttonPrimary,
@@ -96,10 +101,10 @@ class OnboardingScreen extends StatelessWidget {
                     elevation: 0,
                   ),
                   child: const Text(
-                    'Sign In',
+                    'Sign Up',
                     style: TextStyle(
                       fontFamily: 'Figtree',
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),
                   ),
@@ -121,7 +126,10 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // TODO: Navigate to login screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const LoginScreen()),
+                      );
                     },
                     child: const Text(
                       'Login',
