@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:paper_x_flutter/core/theme/app_colors.dart';
-import 'package:paper_x_flutter/features/auth/presentation/pages/otp_screen.dart';
 import 'package:paper_x_flutter/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:paper_x_flutter/features/auth/presentation/widgets/custom_dropdown.dart';
+import 'package:paper_x_flutter/features/profile/presentation/pages/my_account_screen.dart';
 import 'sign_in_screen.dart';
 
 /// Login screen
@@ -141,8 +141,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: Implement login logic
-                     Navigator.push(context, MaterialPageRoute(builder: (_) => OtpScreen(dialCode:"12345", phnNum: "8533969274")));
+                    // Navigate to My Account screen for testing
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const MyAccountScreen(),
+                      ),
+                    );
                   },
                   child: const Text(
                     'Login',

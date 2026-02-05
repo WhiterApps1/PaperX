@@ -23,4 +23,10 @@ class AppColors {
 
   // Input Field Colors
   static const Color inputFieldBackground = Color(0xFF4D4D4D);
+
+  // Material 3 Colors for Profile
+  static const Color profileHeading = Color(0xFFE8E8E8);
+  static const Color onSurface = Color(0xFF1D1B20);
+  static const Color onSurfaceVariant = Color(0xFF49454F);
+  static const Color iconGold = Color(0xFF8C7032);
 }
