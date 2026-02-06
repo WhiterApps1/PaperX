@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:paper_x_flutter/core/theme/app_colors.dart';
 import 'package:paper_x_flutter/features/profile/presentation/widgets/profile_list_item.dart';
 import 'package:paper_x_flutter/features/profile/presentation/pages/profile_information_screen.dart';
+import 'package:paper_x_flutter/features/market_timings/presentation/pages/market_timings_screen.dart';
 
 /// My Account screen with user info and navigation items
 class MyAccountScreen extends StatelessWidget {
@@ -99,7 +100,12 @@ class MyAccountScreen extends StatelessWidget {
                 iconPath: 'assets/images/profile/market-timing.png',
                 title: 'Market Timings',
                 onTap: () {
-                  // TODO: Navigate to Market Timings screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const MarketTimingsScreen(),
+                    ),
+                  );
                 },
               ),
               ProfileListItem(
