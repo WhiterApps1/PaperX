@@ -3,6 +3,7 @@ import 'package:paper_x_flutter/core/theme/app_colors.dart';
 import 'package:paper_x_flutter/features/profile/presentation/widgets/profile_list_item.dart';
 import 'package:paper_x_flutter/features/profile/presentation/pages/profile_information_screen.dart';
 import 'package:paper_x_flutter/features/market_timings/presentation/pages/market_timings_screen.dart';
+import 'package:paper_x_flutter/features/biometrics/presentation/pages/biometrics_screen.dart';
 import 'package:share_plus/share_plus.dart';
 
 /// My Account screen with user info and navigation items
@@ -120,7 +121,10 @@ class MyAccountScreen extends StatelessWidget {
                 iconPath: 'assets/images/profile/biometerics.png',
                 title: 'Biometrics',
                 onTap: () {
-                  // TODO: Navigate to Biometrics screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const BiometricsScreen()),
+                  );
                 },
               ),
               ProfileListItem(
