@@ -3,6 +3,7 @@ import 'package:paper_x_flutter/core/theme/app_colors.dart';
 import 'package:paper_x_flutter/features/profile/presentation/widgets/profile_list_item.dart';
 import 'package:paper_x_flutter/features/profile/presentation/pages/profile_information_screen.dart';
 import 'package:paper_x_flutter/features/market_timings/presentation/pages/market_timings_screen.dart';
+import 'package:share_plus/share_plus.dart';
 
 /// My Account screen with user info and navigation items
 class MyAccountScreen extends StatelessWidget {
@@ -126,7 +127,10 @@ class MyAccountScreen extends StatelessWidget {
                 iconPath: 'assets/images/profile/Invite.png',
                 title: 'Invite Friends',
                 onTap: () {
-                  // TODO: Navigate to Invite Friends screen
+                  Share.share(
+                    'Wavelive https://play.google.com/store/apps/details?id=com.pulsemarket.live',
+                    subject: 'Sharing text',
+                  );
                 },
               ),
               const Spacer(),
