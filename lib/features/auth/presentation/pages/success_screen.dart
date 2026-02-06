@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paper_x_flutter/core/theme/app_colors.dart';
+import 'package:paper_x_flutter/features/profile/presentation/pages/my_account_screen.dart';
 
 class SuccessScreen extends StatelessWidget {
   final VoidCallback? onContinue;
@@ -16,8 +17,7 @@ class SuccessScreen extends StatelessWidget {
         backgroundColor: AppColors.background,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back,
-              color: AppColors.primaryAccent),
+          icon: const Icon(Icons.arrow_back, color: AppColors.primaryAccent),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
@@ -84,7 +84,9 @@ class SuccessScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (onContinue != null) onContinue!();
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (_) => const MyAccountScreen()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryAccent,
