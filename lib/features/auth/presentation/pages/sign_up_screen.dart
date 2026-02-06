@@ -5,12 +5,11 @@ import 'package:paper_x_flutter/core/widgets/custom_button.dart';
 import 'package:paper_x_flutter/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:paper_x_flutter/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:paper_x_flutter/features/auth/presentation/widgets/custom_dropdown.dart';
-import 'package:paper_x_flutter/features/auth/presentation/pages/otp_screen.dart';
-import 'sign_up_screen.dart';
+import 'login_screen.dart';
 
-/// Login screen with BLoC state management
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+/// Sign-up/Registration screen with BLoC state management
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +37,10 @@ class LoginScreen extends StatelessWidget {
           child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is AuthSuccess) {
-                // Navigate to OTP screen on successful login
-                Navigator.push(
+                // Navigate to Login screen after successful signup
+                Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                    builder: (_) => OtpScreen(
-                      dialCode: state.dialCode,
-                      phnNum: state.phoneNumber,
-                    ),
-                  ),
+                  MaterialPageRoute(builder: (_) => const LoginScreen()),
                 );
               } else if (state is AuthFailure) {
                 // Show error message
@@ -55,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                 ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
-            child: const _LoginForm(),
+            child: const _SignInForm(),
           ),
         ),
       ),
@@ -63,8 +57,8 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class _LoginForm extends StatelessWidget {
-  const _LoginForm();
+class _SignInForm extends StatelessWidget {
+  const _SignInForm();
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +82,12 @@ class _LoginForm extends StatelessWidget {
                 },
               );
             },
+          ),
+          const SizedBox(height: 16),
+          // Mobile number field
+          const CustomTextField(
+            hintText: 'Mobile Number',
+            keyboardType: TextInputType.phone,
           ),
           const SizedBox(height: 16),
           // Name field
@@ -115,85 +115,31 @@ class _LoginForm extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 16),
-          // Remember me and Forgot password row
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              BlocBuilder<AuthBloc, AuthState>(
-                builder: (context, state) {
-                  return Row(
-                    children: [
-                      SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Checkbox(
-                          value: state.rememberMe,
-                          onChanged: (value) {
-                            context.read<AuthBloc>().add(
-                              ToggleRememberMe(value ?? false),
-                            );
-                          },
-                          fillColor: WidgetStateProperty.resolveWith((states) {
-                            if (states.contains(WidgetState.selected)) {
-                              return AppColors.primary;
-                            }
-                            return AppColors.inputFieldBackground;
-                          }),
-                          side: const BorderSide(color: AppColors.textGray),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        'Remember me',
-                        style: TextStyle(
-                          fontFamily: 'Figtree',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: AppColors.textGray,
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-              GestureDetector(
-                onTap: () {
-                  // TODO: Navigate to forgot password screen
-                },
-                child: const Text(
-                  'Forgot Password',
-                  style: TextStyle(
-                    fontFamily: 'Figtree',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    color: AppColors.primary,
-                  ),
-                ),
-              ),
-            ],
-          ),
           const SizedBox(height: 32),
-          // Login button
+          // Sign In button
           CustomButton(
-            text: 'Login',
+            text: 'Sign Up',
             onPressed: () {
               context.read<AuthBloc>().add(
-                const SubmitLogin(
+                const SubmitSignUp(
+                  name: 'John Doe',
+                  email: 'john@example.com',
                   phoneNumber: '1234567890',
+                  panNumber: 'ABCDE1234F',
                   dialCode: '+91',
                   password: 'password',
+                  confirmPassword: 'password',
                 ),
               );
             },
           ),
           const SizedBox(height: 16),
-          // Signup link
+          // Login link
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "Didn't have an account? ",
+                'Already have an account? ',
                 style: TextStyle(
                   fontFamily: 'Figtree',
                   fontWeight: FontWeight.w400,
@@ -205,11 +151,11 @@ class _LoginForm extends StatelessWidget {
                 onTap: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (_) => const SignUpScreen()),
+                    MaterialPageRoute(builder: (_) => const LoginScreen()),
                   );
                 },
                 child: const Text(
-                  'Signup',
+                  'Login',
                   style: TextStyle(
                     fontFamily: 'Figtree',
                     fontWeight: FontWeight.w600,

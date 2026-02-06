@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paper_x_flutter/core/theme/app_colors.dart';
-import 'package:paper_x_flutter/features/auth/presentation/pages/sign_in_screen.dart';
+import 'package:paper_x_flutter/features/auth/presentation/pages/sign_up_screen.dart';
 import 'package:paper_x_flutter/features/auth/presentation/pages/login_screen.dart';
 
 /// Main onboarding screen with branding and sign-in CTA
@@ -89,7 +89,7 @@ class OnboardingScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const SignInScreen()),
+                      MaterialPageRoute(builder: (_) => const SignUpScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
